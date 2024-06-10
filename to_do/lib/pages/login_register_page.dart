@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:to_do/auth.dart';
 
@@ -33,7 +32,6 @@ class _LoginRegesterPageState extends State<LoginRegesterPage> {
         } else {
           errorMessage = "Vui lòng nhập mật khẩu";
         }
-        print(e.message);
       });
     }
   }
@@ -46,8 +44,7 @@ class _LoginRegesterPageState extends State<LoginRegesterPage> {
       );
     } on FirebaseAuthException catch (e) {
       setState(() {
-        print(e.message);
-        errorMessage = "Sai mật khẩu";
+        errorMessage = e.message;
       });
     }
   }
@@ -131,7 +128,7 @@ class _LoginRegesterPageState extends State<LoginRegesterPage> {
                 isLogin ? "Login" : "Register",
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             TextButton(

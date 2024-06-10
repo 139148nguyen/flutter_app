@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:to_do/api/firsebase_api.dart';
 import 'auth.dart';
 import 'firebase_options.dart';
 import 'pages/home_page.dart';
@@ -13,7 +14,8 @@ Future<void> main(List<String> args) async {
   );
   FirebaseFirestore.instance.settings =
       const Settings(persistenceEnabled: true);
-  runApp(ToDo());
+  // await FirebaseApi().initNotifications();
+  runApp(const ToDo());
 }
 
 class ToDo extends StatelessWidget {
@@ -21,7 +23,7 @@ class ToDo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: WidgetTree(),
       debugShowCheckedModeBanner: false,
     );
@@ -42,9 +44,9 @@ class _WidgetTreeState extends State<WidgetTree> {
         stream: Auth().authStateChanges,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return HomePage();
+            return const HomePage();
           } else {
-            return LoginRegesterPage();
+            return const LoginRegesterPage();
           }
         });
   }

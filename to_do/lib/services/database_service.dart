@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:to_do/main.dart';
 import 'package:to_do/models/todo.dart';
 
 const String TODO_COLLECTION_REP = 'todos';
@@ -28,5 +27,9 @@ class DataBaseService {
 
   void updateTodo(String todoId, Todo todo) {
     _todosRef.doc(todoId).update(todo.toJson());
+  }
+
+  void removeTodo(String todoId) {
+    _todosRef.doc(todoId).delete();
   }
 }
