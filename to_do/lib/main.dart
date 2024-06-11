@@ -14,7 +14,8 @@ Future<void> main(List<String> args) async {
   );
   FirebaseFirestore.instance.settings =
       const Settings(persistenceEnabled: true);
-  // await FirebaseApi().initNotifications();
+  await FirebaseApi().initNotifications();
+
   runApp(const ToDo());
 }
 

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:to_do/services/database_service.dart';
 
+import '../api/firsebase_api.dart';
 import '../models/todo.dart';
 import 'task_view.dart';
 
@@ -187,8 +188,7 @@ class _HomePageState extends State<HomePage> {
                 TextFormField(
                   controller: _dateNotiCtl,
                   decoration: const InputDecoration(
-                      hintText: "What day do you do this?",
-                      labelText: "Ngày nhắc:"),
+                      hintText: "Ngày thực hiện?", labelText: "Ngày nhắc:"),
                   onTap: () async {
                     FocusScope.of(context).requestFocus(FocusNode());
                     final dateTime = await showDatePicker(
@@ -208,8 +208,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 TextFormField(
                   controller: _timeNotiCtl,
-                  decoration: const InputDecoration(
-                      hintText: "What time do you do this?"),
+                  decoration: const InputDecoration(hintText: "Thời gian?"),
                   onTap: () async {
                     FocusScope.of(context).requestFocus(FocusNode());
                     final time = await showTimePicker(
@@ -232,7 +231,7 @@ class _HomePageState extends State<HomePage> {
               MaterialButton(
                 color: Theme.of(context).colorScheme.primary,
                 textColor: Colors.white,
-                onPressed: () {
+                onPressed: () async {
                   Todo todo = Todo(
                       createdOn: Timestamp.now(),
                       task: _newTaskCtl.text,
